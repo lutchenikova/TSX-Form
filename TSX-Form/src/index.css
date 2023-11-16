@@ -3,26 +3,26 @@ body {
 }
 
 button {
-	background-color: #ED9B1C;
-	border: 1px solid #ED9B1C;
+	background-color: #ed9b1c;
+	border: 1px solid #ed9b1c;
 	border-radius: 10px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
 	font-family: "Nunito", sans-serif;
 	font-size: 18px;
 	font-weight: bold;
 	padding: 8px;
-	transition: transform .2s;
+	transition: transform 0.2s;
 	width: 100%;
-	&:hover{
-		border: 1px solid #FDFAF0;
-		transform: scale(1.05)
+	&:hover {
+		border: 1px solid #fdfaf0;
+		transform: scale(1.05);
 	}
 }
 
 form {
-	background-color: #4069DB;
+	background-color: #4069db;
 	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	margin-top: 150px;
+	margin-top: 50px;
 	padding: 40px;
 }
 
@@ -34,8 +34,8 @@ html {
 	width: 100%;
 }
 
-input[type="text"] {
-	background-color: #FDFAF0;
+input {
+	background-color: #fdfaf0;
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	box-sizing: border-box;
@@ -54,13 +54,13 @@ span {
 }
 
 .error {
-	color: #EF9292;
+	color: #ef9292;
 	font-size: 18px;
 	font-weight: medium;
 }
 
 .grid {
-	display: flex
+	padding-bottom: 30px;
 	width: 400px;
 }
 
@@ -69,16 +69,14 @@ span {
 	margin-left: auto;
 	margin-right: auto;
 	padding-top: 40px;
-	width: 200px
+	width: 200px;
 }
 
 .gridInput {
-	width: 400px
+	width: 400px;
 }
 
 .labelMark {
-	color: #EF9292;
+	color: #ef9292;
 	padding-left: 8px;
 }
-
-
