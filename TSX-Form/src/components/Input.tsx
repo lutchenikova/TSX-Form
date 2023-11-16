@@ -1,8 +1,8 @@
 import { ChangeEvent, useState } from "react";
 
-type InputType = "checkbox" | "date" | "email" | "tel" | "text";
+export type InputType = "checkbox" | "date" | "email" | "tel" | "text";
 
-type InputProps = {
+export type InputProps = {
 	isAutoFocus?: boolean;
 	isDisabled?: boolean;
 	isHidden?: boolean;
@@ -11,7 +11,14 @@ type InputProps = {
 	type: InputType;
 };
 
-export const Input = ({ isAutoFocus, isDisabled, isHidden, isRequired, label, type }: InputProps) => {
+export const Input = ({
+	isAutoFocus = false,
+	isDisabled = false,
+	isHidden = false,
+	isRequired = false,
+	label,
+	type,
+}: InputProps) => {
 	const formattedLabel = label.toLowerCase();
 	const [hasError, setHasError] = useState(false);
 
@@ -21,7 +28,7 @@ export const Input = ({ isAutoFocus, isDisabled, isHidden, isRequired, label, ty
 				{!isHidden && (
 					<span>
 						{label}
-						{isRequired || (hasError && <span className="labelMark">*</span>)}
+						{isRequired && <span className="labelMark">*</span>}
 					</span>
 				)}
 			</div>
@@ -48,16 +55,33 @@ export const Input = ({ isAutoFocus, isDisabled, isHidden, isRequired, label, ty
 
 	function onChange(event: ChangeEvent<HTMLInputElement>) {
 		const inputValue = event?.target.value;
-		// const inputType = event?.target.type;
+		const inputType = event?.target.type;
 
-		validateTextInput(inputValue);
+		const validate: { [key: string]: (value: string) => void } = {
+			email: validateEmailInput,
+			tel: validatePhoneInput,
+			text: validateTextInput,
+		};
+
+		const validateField = validate[inputType];
+		if (validateField) {
+			return validateField(inputValue);
+		}
 	}
 
 	function validateTextInput(value: string) {
-		if (value.length > 2) {
-			setHasError(true);
-		} else {
-			setHasError(false);
-		}
+		value.length > 2 ? setHasError(true) : setHasError(false);
+	}
+
+	function validateEmailInput(value: string) {
+		const emailRegex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+/i;
+
+		!emailRegex.test(value) ? setHasError(true) : setHasError(false);
+	}
+
+	function validatePhoneInput(value: string) {
+		const numberRegex = /[0-9]/i;
+
+		numberRegex.test(value) || !value ? setHasError(false) : setHasError(true);
 	}
 };
