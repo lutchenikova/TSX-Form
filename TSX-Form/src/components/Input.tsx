@@ -19,8 +19,10 @@ export const Input = ({
 	label,
 	type,
 }: InputProps) => {
-	const formattedLabel = label.toLowerCase();
 	const [hasError, setHasError] = useState(false);
+
+	const formattedLabel = label.toLowerCase();
+	const isDateType = type === "date";
 
 	return (
 		<div className="grid">
@@ -37,10 +39,11 @@ export const Input = ({
 				<input
 					aria-labelledby={`input.${formattedLabel}`}
 					autoFocus={isAutoFocus}
-					className={hasError ? "error" : "input"}
+					className={hasError ? "error" : undefined}
 					disabled={isDisabled}
 					hidden={isHidden}
 					id={`${type}.${formattedLabel}`}
+					max={isDateType ? formatDate() : undefined}
 					name={`user.${formattedLabel}`}
 					onChange={onChange}
 					placeholder={`Insert the ${formattedLabel}`}
@@ -83,5 +86,9 @@ export const Input = ({
 		const numberRegex = /[0-9]/i;
 
 		numberRegex.test(value) || !value ? setHasError(false) : setHasError(true);
+	}
+
+	function formatDate() {
+		return new Date().toISOString().split("T")[0];
 	}
 };

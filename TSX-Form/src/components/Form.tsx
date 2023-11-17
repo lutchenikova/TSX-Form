@@ -27,6 +27,7 @@ export const Form = ({ formId }: FormProps) => {
 			type: "tel",
 		},
 		{
+			isHidden: false,
 			label: "Date of Birth",
 			type: "date",
 		},
@@ -38,6 +39,7 @@ export const Form = ({ formId }: FormProps) => {
 				<Input
 					isAutoFocus={field.isAutoFocus}
 					isDisabled={field.isDisabled}
+					isHidden={field.isHidden}
 					isRequired={field.isRequired}
 					key={index}
 					label={field.label}
