@@ -8,6 +8,8 @@ export type InputProps = {
 	isHidden?: boolean;
 	isRequired?: boolean;
 	label: string;
+	// TODO use omit here
+	onInputValid?: () => void;
 	type: InputType;
 };
 
@@ -45,7 +47,7 @@ export const Input = ({
 					id={`${type}.${formattedLabel}`}
 					max={isDateType ? formatDate() : undefined}
 					name={`user.${formattedLabel}`}
-					onChange={onChange}
+					onBlur={onValidateField}
 					placeholder={`Insert the ${formattedLabel}`}
 					required={isRequired}
 					type={type}
@@ -56,7 +58,7 @@ export const Input = ({
 		</div>
 	);
 
-	function onChange(event: ChangeEvent<HTMLInputElement>) {
+	function onValidateField(event: ChangeEvent<HTMLInputElement>) {
 		const inputValue = event?.target.value;
 		const inputType = event?.target.type;
 
