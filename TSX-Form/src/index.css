@@ -24,13 +24,6 @@ button:disabled {
 	transform: scale(1);
 }
 
-form {
-	background-color: #4069db;
-	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	margin-top: 50px;
-	padding: 40px;
-}
-
 html {
 	background: linear-gradient(rgba(0, 98, 209, 82), rgba(155, 89, 182, 0.6));
 	display: flex;
@@ -56,6 +49,13 @@ input {
 span {
 	color: white;
 	font-size: 22px;
+}
+
+.container {
+	background-color: #4069db;
+	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin-top: 50px;
+	padding: 40px;
 }
 
 .error {

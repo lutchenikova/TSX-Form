@@ -9,7 +9,7 @@ type ButtonProps = {
 export const Button = ({ form, isDisabled, onSubmit }: ButtonProps) => {
 	return (
 		<div className="gridButton">
-			<button disabled={isDisabled} form={form} type="button" onSubmit={onSubmit}>
+			<button disabled={isDisabled} form={form} type="button" onClick={onSubmit}>
 				Submit
 			</button>
 		</div>

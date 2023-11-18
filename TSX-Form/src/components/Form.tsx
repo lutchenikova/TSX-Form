@@ -1,48 +1,41 @@
+import { useState } from "react";
 import { Button } from "./Button";
 import { Input, InputProps } from "./Input";
+import { UserInfo } from "./UserInfo";
 
 export type FormId = "addPerson" | "addUser";
 
 type FormProps = {
+	formFields: InputProps[];
 	formId: FormId;
 };
 
-export const Form = ({ formId }: FormProps) => {
-	const formFields: InputProps[] = [
-		{
-			isAutoFocus: true,
-			label: "Name",
-			type: "text",
-		},
-		{
-			label: "Email",
-			type: "email",
-		},
-		{
-			label: "Phone",
-			type: "tel",
-		},
-		{
-			isHidden: false,
-			label: "Date of Birth",
-			type: "date",
-		},
-	];
+export const Form = ({ formFields, formId }: FormProps) => {
+	const [fomSubmited, setFormSubmited] = useState(false);
 
 	return (
-		<form id={formId}>
-			{formFields.map((field, index) => (
-				<Input
-					isAutoFocus={field.isAutoFocus}
-					isDisabled={field.isDisabled}
-					isHidden={field.isHidden}
-					isRequired={field.isRequired}
-					key={index}
-					label={field.label}
-					type={field.type}
-				/>
-			))}
-			<Button form={formId} />
-		</form>
+		<>
+			{!fomSubmited && (
+				<form className="container" id={formId}>
+					{formFields.map((field, index) => (
+						<Input
+							isAutoFocus={field.isAutoFocus}
+							isDisabled={field.isDisabled}
+							isHidden={field.isHidden}
+							isRequired={field.isRequired}
+							key={index}
+							label={field.label}
+							type={field.type}
+						/>
+					))}
+					<Button form={formId} onSubmit={onSubmit} />
+				</form>
+			)}
+			<UserInfo shouldRenderInfo={fomSubmited} />
+		</>
 	);
+
+	function onSubmit() {
+		setFormSubmited(true);
+	}
 };
