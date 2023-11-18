@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Button } from "./Button";
 import { Input, InputProps } from "./Input";
 
@@ -9,16 +8,10 @@ type FormProps = {
 };
 
 export const Form = ({ formId }: FormProps) => {
-	const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-
 	const formFields: InputProps[] = [
 		{
 			isAutoFocus: true,
-			label: "First Name",
-			type: "text",
-		},
-		{
-			label: "Last Name",
+			label: "Name",
 			type: "text",
 		},
 		{
@@ -46,15 +39,10 @@ export const Form = ({ formId }: FormProps) => {
 					isRequired={field.isRequired}
 					key={index}
 					label={field.label}
-					onInputValid={onEnableButton}
 					type={field.type}
 				/>
 			))}
-			<Button form={formId} isDisabled={isButtonDisabled} />
+			<Button form={formId} />
 		</form>
 	);
-
-	function onEnableButton() {
-		setIsButtonDisabled(false);
-	}
 };

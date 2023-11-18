@@ -8,8 +8,6 @@ export type InputProps = {
 	isHidden?: boolean;
 	isRequired?: boolean;
 	label: string;
-	// TODO use omit here
-	onInputValid?: () => void;
 	type: InputType;
 };
 
@@ -47,7 +45,7 @@ export const Input = ({
 					id={`${type}.${formattedLabel}`}
 					max={isDateType ? formatDate() : undefined}
 					name={`user.${formattedLabel}`}
-					onBlur={onValidateField}
+					onChange={onValidateField}
 					placeholder={`Insert the ${formattedLabel}`}
 					required={isRequired}
 					type={type}
@@ -81,7 +79,7 @@ export const Input = ({
 	function validateEmailInput(value: string) {
 		const emailRegex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+/i;
 
-		!emailRegex.test(value) ? setHasError(true) : setHasError(false);
+		!emailRegex.test(value) ? setHasError(!!value ?? false) : setHasError(false);
 	}
 
 	function validatePhoneInput(value: string) {
