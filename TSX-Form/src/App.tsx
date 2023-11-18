@@ -1,7 +1,7 @@
-import { Form } from "./components/Form";
+import { AddPerson } from "./components/AddPerson";
 
 function App() {
-	return <Form formId="addPerson" />;
+	return <AddPerson />;
 }
 
 export default App;
